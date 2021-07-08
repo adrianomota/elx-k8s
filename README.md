@@ -1,5 +1,5 @@
 
-# ElxK8s [![Build Actions Status](https://github.com/adrianomota/elx-k8s/workflows/phoenix-master/badge.svg)](https://github.com/adrianomota/elx-k8s/actions) [![codecov](https://codecov.io/gh/adrianomota/elx-k8s/branch/master/graph/badge.svg?token=WR6THUC2HT)](https://codecov.io/gh/adrianomota/elx-k8s)
+# ElxK8s [![Build Actions Status](https://github.com/adrianomota/elx-k8s/workflows/ci/badge.svg)](https://github.com/adrianomota/elx-k8s/actions) [![codecov](https://codecov.io/gh/adrianomota/elx-k8s/branch/master/graph/badge.svg?token=WR6THUC2HT)](https://codecov.io/gh/adrianomota/elx-k8s)
 
 
 To start your Phoenix server:
