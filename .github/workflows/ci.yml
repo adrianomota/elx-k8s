@@ -38,8 +38,8 @@ jobs:
       - uses: actions/checkout@v2
       - uses: erlef/setup-elixir@885971a72ed1f9240973bd92ab57af8c1aa68f24
         with:
-          otp-version: "23.0"
-          elixir-version: "1.10.1"
+          otp-version: "24.0"
+          elixir-version: "1.12.1"
       - uses: actions/cache@v2
         env:
           cache-name: cache-elixir-deps
@@ -63,8 +63,8 @@ jobs:
       - uses: actions/checkout@v2
       - uses: erlef/setup-elixir@885971a72ed1f9240973bd92ab57af8c1aa68f24
         with:
-          otp-version: "23.0"
-          elixir-version: "1.10.1"
+          otp-version: "24.0"
+          elixir-version: "1.12.1"
       - uses: actions/cache@v2
         env:
           cache-name: cache-elixir-deps
@@ -88,8 +88,8 @@ jobs:
       - uses: actions/checkout@v2
       - uses: erlef/setup-elixir@885971a72ed1f9240973bd92ab57af8c1aa68f24
         with:
-          otp-version: "23.0"
-          elixir-version: "1.10.1"
+          otp-version: "24.0"
+          elixir-version: "1.12.1"
       - uses: actions/cache@v2
         env:
           cache-name: cache-elixir-deps
