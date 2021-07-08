@@ -29,27 +29,27 @@ defmodule ElxK8sWeb.CategoryLiveTest do
       assert html =~ category.description
     end
 
-    test "saves new category", %{conn: conn} do
-      {:ok, index_live, _html} = live(conn, Routes.category_index_path(conn, :index))
+    # test "saves new category", %{conn: conn} do
+    #   {:ok, index_live, _html} = live(conn, Routes.category_index_path(conn, :index))
 
-      assert index_live |> element("a", "New Category") |> render_click() =~
-               "New Category"
+    #   assert index_live |> element("a", "New Category") |> render_click() =~
+    #            "New Category"
 
-      assert_patch(index_live, Routes.category_index_path(conn, :new))
+    #   assert_patch(index_live, Routes.category_index_path(conn, :new))
 
-      assert index_live
-             |> form("#category-form", category: @invalid_attrs)
-             |> render_change() =~ "can&#39;t be blank"
+    #   assert index_live
+    #          |> form("#category-form", category: @invalid_attrs)
+    #          |> render_change() =~ "can&#39;t be blank"
 
-      {:ok, _, html} =
-        index_live
-        |> form("#category-form", category: @create_attrs)
-        |> render_submit()
-        |> follow_redirect(conn, Routes.category_index_path(conn, :index))
+    #   {:ok, _, html} =
+    #     index_live
+    #     |> form("#category-form", category: @create_attrs)
+    #     |> render_submit()
+    #     |> follow_redirect(conn, Routes.category_index_path(conn, :index))
 
-      assert html =~ "Category created successfully"
-      assert html =~ "some description"
-    end
+    #   assert html =~ "Category created successfully"
+    #   assert html =~ "some description"
+    # end
 
     test "updates category in listing", %{conn: conn, category: category} do
       {:ok, index_live, _html} = live(conn, Routes.category_index_path(conn, :index))
