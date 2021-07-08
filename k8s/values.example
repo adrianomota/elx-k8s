@@ -1,0 +1,13 @@
+replicaCountApp: 5
+image:
+  repository: "image name"
+  tag: v1
+
+database:
+  url: "url database service"
+  poolSize: "2"
+
+secretKeyBase: "your secret key..."
+
+
+# ps: rename this file to values.yaml
