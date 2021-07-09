@@ -139,7 +139,7 @@ jobs:
         docker pull "gcr.io/"${{ secrets.PROJECT_ID }}"/"${{ secrets.IMAGE }}"":$GITHUB_SHA" > /dev/null || docker build -t "gcr.io/"${{ secrets.PROJECT_ID }}"/"${{ secrets.IMAGE }}"":$GITHUB_SHA" .
       - name: Push docker image
         run: |-
-          docker push "gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA"
+          docker push "gcr.io/"${{ secrets.PROJECT_ID }}"/"${{ secrets.IMAGE }}"":$GITHUB_SHA"
       - name: Deploy Helm Chart
         working-directory: "./charts/${{ env.IMAGE }}"
         run: |-
