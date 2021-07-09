@@ -121,7 +121,7 @@ jobs:
 
   deploy:
     name: Deploy Gigalixir
-    needs: CI
+    needs: [lint, check_format, security, test]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
