@@ -146,8 +146,8 @@ jobs:
           pwd
           helm dependency update
           helm \
-          -n "$NAMESPACE" \
-          upgrade "$HELM_PROJECT" \
+          -n ${{ secrets.NAMESPACE }} \
+          upgrade ${{ secrets.HELM_PROJECT }} \
           ./ \
           --wait \
           --reuse-values \
