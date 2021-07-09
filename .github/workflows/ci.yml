@@ -141,7 +141,7 @@ jobs:
         run: |-
           docker push "gcr.io/"${{ secrets.PROJECT_ID }}"/"${{ secrets.IMAGE }}":$GITHUB_SHA"
       - name: Deploy Helm Chart
-        working-directory: "./charts/${{ env.IMAGE }}"
+        working-directory: "./k8s"
         run: |-
           pwd
           helm dependency update
