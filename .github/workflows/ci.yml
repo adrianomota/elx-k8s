@@ -6,6 +6,14 @@ on:
   pull_request:
     branches: [master]
 
+env:
+  PROJECT_ID: ${{ secrets.GKE_PROJECT }}
+  GKE_CLUSTER: ${{ secrets.GKE_CLUSTER }}
+  GKE_REGION: ${{ secrets.GKE_REGION }}
+  IMAGE: ${{ secrets.IMAGE }}
+  HELM_PROJECT: ${{ secrets.HELM_PROJECT }}
+  NAMESPACE: ${{ secrets.NAMESPACE }}
+
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -133,22 +141,22 @@ jobs:
       - run: |-
           gcloud --quiet auth configure-docker
       - run: |-
-          gcloud container clusters get-credentials ${{ secrets.GKE_CLUSTER }} --region ${{ secrets.GKE_REGION }} --project ${{ secrets.PROJECT_ID }}
+          gcloud container clusters get-credentials "$GKE_CLUSTER" --region "$GKE_REGION" --project "$PROJECT_ID"
       - name: Build docker IMAGE
         run: |-
-          docker pull "gcr.io/"${{ secrets.PROJECT_ID }}"/"${{ secrets.IMAGE }}":$GITHUB_SHA" > /dev/null || docker build -t "gcr.io/"${{ secrets.PROJECT_ID }}"/"${{ secrets.IMAGE }}":$GITHUB_SHA" .
+          docker pull "gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA" > /dev/null || docker build -t "gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA" .
       - name: Push docker image
         run: |-
-          docker push "gcr.io/"${{ secrets.PROJECT_ID }}"/"${{ secrets.IMAGE }}":$GITHUB_SHA"
+          docker push "gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA"
       - name: Deploy Helm Chart
-        working-directory: "./k8s"
+        working-directory: "./k8s/${{ env.IMAGE }}"
         run: |-
           pwd
           helm dependency update
           helm \
-          -n ${{ secrets.NAMESPACE }} \
-          upgrade ${{ secrets.HELM_PROJECT }} \
+          -n "$NAMESPACE" \
+          upgrade "$HELM_PROJECT" \
           ./ \
           --wait \
           --reuse-values \
-          --set image.repository="gcr.io/"${{ secrets.PROJECT_ID }}"/"${{ secrets.IMAGE }},image.tag="$GITHUB_SHA"
+          --set image.repository="gcr.io/$PROJECT_ID/$IMAGE",image.tag="$GITHUB_SHA"
