@@ -136,7 +136,7 @@ jobs:
           gcloud container clusters get-credentials ${{ secrets.GKE_CLUSTER }} --region ${{ secrets.GKE_REGION }} --project ${{ secrets.PROJECT_ID }}
       - name: Build docker IMAGE
         run: |-
-        docker pull "gcr.io/"${{ secrets.PROJECT_ID }}"/"${{ secrets.IMAGE }}":$GITHUB_SHA" > /dev/null || docker build -t "gcr.io/"${{ secrets.PROJECT_ID }}"/"${{ secrets.IMAGE }}":$GITHUB_SHA" .
+          docker pull "gcr.io/"${{ secrets.PROJECT_ID }}"/"${{ secrets.IMAGE }}":$GITHUB_SHA" > /dev/null || docker build -t "gcr.io/"${{ secrets.PROJECT_ID }}"/"${{ secrets.IMAGE }}":$GITHUB_SHA" .
       - name: Push docker image
         run: |-
           docker push "gcr.io/"${{ secrets.PROJECT_ID }}"/"${{ secrets.IMAGE }}":$GITHUB_SHA"
